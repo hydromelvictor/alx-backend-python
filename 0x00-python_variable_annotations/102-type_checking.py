@@ -4,6 +4,7 @@ Use mypy to validate the following piece of code and
 apply any necessary changes.
 """
 
+
 def zoom_array(lst: list[int], factor: float = 2) -> list[int]:
     zoomed_in: list[int] = [
         item for item in lst
