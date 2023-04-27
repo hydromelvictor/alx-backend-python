@@ -6,12 +6,13 @@ multiplies a float by multiplier.
 """
 from collections.abc import Callable
 
+
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
     """
     multiplier: float
     return : Callable
     """
-    def inner() -> float:
+    def inner(multiplier: float) -> float:
         """
         return : float
         """
