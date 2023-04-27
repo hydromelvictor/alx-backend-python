@@ -3,18 +3,15 @@
 Use mypy to validate the following piece of code and
 apply any necessary changes.
 """
+from typing import Tuple, List
 
 
-def zoom_array(lst: list[int], factor: float = 2) -> list[int]:
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    """
+    lst : Tuple
+    """
     zoomed_in: list[int] = [
         item for item in lst
         for i in range(int(factor))
     ]
     return zoomed_in
-
-
-array = [12, 72, 91]
-
-zoom_2x = zoom_array(array)
-
-zoom_3x = zoom_array(array, 3.0)
