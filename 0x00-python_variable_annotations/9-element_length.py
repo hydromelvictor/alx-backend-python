@@ -6,5 +6,5 @@ values with the appropriate types
 from typing import Sequence, List, Tuple
 
 
-def element_length(lst: list[Sequence]) -> List[Tuple[Sequence, int]]:
+def element_length(lst: List[Sequence]) -> List[Tuple[Sequence, int]]:
     return [(i, len(i)) for i in lst]
