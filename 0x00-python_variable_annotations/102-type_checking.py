@@ -11,8 +11,7 @@ def zoom_array(lst: Tuple, factor: int = 2) -> List:
     lst : Tuple
     """
     zoomed_in: list[int] = [
-        item for item in lst or
-        [i for i in range(factor)]
+        item for item in lst or [i for i in range(factor)]
     ]
     return zoomed_in
 
