@@ -17,7 +17,7 @@ def little(lst: List[float]) -> float:
     return min
 
 
-def sorting(lst: List[float]) -> list:
+def sorting(lst: List[float]) -> List[float]:
     """
     lst : list
     """
@@ -29,7 +29,7 @@ def sorting(lst: List[float]) -> list:
     return s
 
 
-async def wait_n(n: int, max_delay: int) -> list:
+async def wait_n(n: int, max_delay: int) -> List[float]:
     """
     n : int
     max_delay : int
