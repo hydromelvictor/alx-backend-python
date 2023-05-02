@@ -9,7 +9,7 @@ from random import uniform
 
 async def async_generator() -> float:
     """
-    _return_ : 
+    _return_ :
     """
     for i in range(10):
         yield uniform(0, 10)
