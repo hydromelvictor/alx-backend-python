@@ -13,4 +13,3 @@ async def async_generator() -> float:
     """
     for i in range(10):
         yield uniform(0, 10)
-        await asyncio.sleep(1)
