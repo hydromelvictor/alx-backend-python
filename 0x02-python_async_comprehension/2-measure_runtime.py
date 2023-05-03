@@ -8,7 +8,7 @@ import time
 comp = __import__('1-async_comprehension').async_comprehension
 
 
-async def measure_runtime():
+async def measure_runtime() -> float:
     """
     _return_:
     """
