@@ -108,7 +108,6 @@ class TestMemoize(unittest.TestCase):
         
         with patch.object(TestClass,'a_method') as patcher:
             testClass = TestClass()
-            for i in range(2):
-                with self.subTest(i):
-                    testClass.a_property()
+            testClass.a_property()
+            testClass.a_property()
             patcher.assert_called_once()
