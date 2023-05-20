@@ -27,12 +27,13 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         assert GithubOrgClient.org is get_json
         self.assertEqual(GithubOrgClient(org_name).org(), excepted)
-    
+
     def test_public_repos_url(self):
         """
         public_repos_url test
         """
-        with patch('GithubOrgClient._public_repos_url', new_callable=PropertyMock) as matcher:
+        with patch('GithubOrgClient._public_repos_url',
+                   new_callable=PropertyMock) as matcher:
             matcher.return_value = Dict()
             myclass = GithubOrgClient("google")
             self.assertEqual(myclass._public_repos_url(), myclass.org())
