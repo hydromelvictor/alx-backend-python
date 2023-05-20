@@ -20,7 +20,7 @@ class TestGithubOrgClient(unittest.TestCase):
         (google, get_json("https://api.github.com/orgs/{}".format(google))),
         (abc, get_json("https://api.github.com/orgs/{}".format(abc))),
     ])
-    @patch.object(GithubOrgClient, 'org')
+    @patch.object('client.get_json')
     def test_org(self, org_name, excepted):
         """
         org method test
@@ -28,18 +28,26 @@ class TestGithubOrgClient(unittest.TestCase):
         assert GithubOrgClient.org is get_json
         self.assertEqual(GithubOrgClient(org_name).org(), excepted)
 
-    def test_public_repos_url(self):
+    @parameterized.expand([
+        ("strick", {"repos_url": "https://strickrepos.com"})
+    ])
+    def test_public_repos_url(self, name, repos):
         """
         public_repos_url test
         """
         with patch('GithubOrgClient.org',
                    new_callable=PropertyMock) as matcher:
-            matcher.return_value = Dict()
-            myclass = GithubOrgClient("google")
-            self.assertEqual(myclass._public_repos_url(), myclass.org())
+            matcher.return_value = repos
+            myclass = GithubOrgClient(name)
+            self.assertEqual(myclass._public_repos_url(),
+                             repos.get("repos_url"))
 
-    @patch('GithubOrgClient.org')
-    def test_public_repos(self):
+    @parameterized.expand([
+        ("test1", {"name": 'repos', "license": "reops1"}),
+        ('test2', {"name": "repos1", "license": "license_key"}),
+    ])
+    @patch('client.get_json')
+    def test_public_repos(self, name, repos):
         """
         public_repos test
         """

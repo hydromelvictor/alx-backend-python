@@ -77,11 +77,11 @@ class TestGetJson(unittest.TestCase):
                 to_json
                 """
                 return payload
-        
+
         with patch('requests.get') as stoper:
             stoper.return_value = Jsonified()
             self.assertEqual(get_json(url), payload)
-        
+
 
 class TestMemoize(unittest.TestCase):
     """
@@ -105,9 +105,9 @@ class TestMemoize(unittest.TestCase):
             def a_property(self):
                 """call class method a_method"""
                 return self.a_method()
-        
-        with patch.object(TestClass,'a_method') as patcher:
+
+        with patch.object(TestClass, 'a_method') as patcher:
             testClass = TestClass()
-            testClass.a_property()
-            testClass.a_property()
+            testClass.a_property
+            testClass.a_property
             patcher.assert_called_once()
