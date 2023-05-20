@@ -78,8 +78,8 @@ class TestGetJson(unittest.TestCase):
                 """
                 return payload
         
-        with patch('utils.get_json') as requests:
-            requests.return_value = Jsonified()
+        with patch('requests.get') as stoper:
+            stoper.return_value = Jsonified()
             self.assertEqual(get_json(url), payload)
         
 
@@ -106,7 +106,7 @@ class TestMemoize(unittest.TestCase):
                 """call class method a_method"""
                 return self.a_method()
         
-        with patch(TestClass,'utils.memoize') as patcher:
+        with patch.object(TestClass,'a_method') as patcher:
             testClass = TestClass()
             for i in range(2):
                 with self.subTest(i):
