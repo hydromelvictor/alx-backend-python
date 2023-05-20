@@ -43,3 +43,4 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         public_repos test
         """
+        pass
