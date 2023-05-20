@@ -4,6 +4,7 @@ In a new test_client.py file, declare the
 TestGithubOrgClient(unittest.TestCase) class
 and implement the test_org method.
 """
+from typing import Dict
 import unittest
 from parameterized import parameterized
 from client import GithubOrgClient
@@ -32,5 +33,12 @@ class TestGithubOrgClient(unittest.TestCase):
         public_repos_url test
         """
         with patch('GithubOrgClient._public_repos_url', new_callable=PropertyMock) as matcher:
-            pass
-        
+            matcher.return_value = Dict()
+            myclass = GithubOrgClient("google")
+            self.assertEqual(myclass._public_repos_url(), myclass.org())
+
+    @patch()
+    def test_public_repos(self):
+        """
+        public_repos test
+        """
