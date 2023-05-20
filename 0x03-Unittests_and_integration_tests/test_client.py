@@ -32,13 +32,13 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         public_repos_url test
         """
-        with patch('GithubOrgClient._public_repos_url',
+        with patch('GithubOrgClient.org',
                    new_callable=PropertyMock) as matcher:
             matcher.return_value = Dict()
             myclass = GithubOrgClient("google")
             self.assertEqual(myclass._public_repos_url(), myclass.org())
 
-    @patch()
+    @patch('GithubOrgClient.org')
     def test_public_repos(self):
         """
         public_repos test
