@@ -41,6 +41,7 @@ class TestGithubOrgClient(unittest.TestCase):
             myclass = GithubOrgClient(name)
             self.assertEqual(myclass._public_repos_url(),
                              repos.get("repos_url"))
+            matcher.assert_called_once_with()
 
     @parameterized.expand([
         ("test1", {"name": 'repos', "license": "reops1"}),
