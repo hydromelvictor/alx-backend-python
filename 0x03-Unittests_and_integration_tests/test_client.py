@@ -6,10 +6,11 @@ and implement the test_org method.
 """
 from typing import Dict
 import unittest
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 from client import GithubOrgClient
 from utils import get_json
 from unittest.mock import patch, Mock, PropertyMock
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -37,7 +38,7 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         with patch('GithubOrgClient.org',
                    new_callable=PropertyMock) as matcher:
-            matcher.return_value = repos
+            matcher.return_value = repos["repos_url"]
             myclass = GithubOrgClient(name)
             self.assertEqual(myclass._public_repos_url(),
                              repos.get("repos_url"))
@@ -53,3 +54,24 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         myclass = GithubOrgClient.has_license(repo, license_key)
         self.assertEqual(myclass, excepted)
+
+
+@parameterized_class(
+    (org_payload, repos_payload, expected_repos, apache2_repos),
+    TEST_PAYLOAD
+    )
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """
+    integration test for GithubOrgClient
+    """
+
+    def setUpClass(self):
+        """setupclass"""
+        requests = Mock()
+        with patch('requests.get', side_effect=KeyError) as get_patcher:
+            url = org_payload
+            requests.get(url).json()
+    
+    def tearDownClass(self):
+        """teardownclass"""
+        self.setUpClass.get_patcher.stop()
