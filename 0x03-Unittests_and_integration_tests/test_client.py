@@ -26,7 +26,7 @@ class TestGithubOrgClient(unittest.TestCase):
         org method test
         """
         assert GithubOrgClient.org is get_json
-        self.assertEqual(GithubOrgClient(org_name).org(), excepted)
+        self.assertEqual(GithubOrgClient(org_name).org, excepted)
 
     @parameterized.expand([
         ("strick", {"repos_url": "https://strickrepos.com"})
