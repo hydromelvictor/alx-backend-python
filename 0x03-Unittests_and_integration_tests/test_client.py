@@ -44,12 +44,12 @@ class TestGithubOrgClient(unittest.TestCase):
             matcher.assert_called_once_with()
 
     @parameterized.expand([
-        ("test1", {"name": 'repos', "license": "reops1"}),
-        ('test2', {"name": "repos1", "license": "license_key"}),
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False),
     ])
-    @patch('client.get_json')
-    def test_public_repos(self, name, repos):
+    def test_has_license(self, repo, license_key, excepted):
         """
-        public_repos test
+        has license
         """
-        pass
+        myclass = GithubOrgClient.has_license(repo, license_key)
+        self.assertEqual(myclass, excepted)
